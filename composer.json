@@ -1,0 +1,22 @@
+{
+    "name": "mohte/driver-logbook",
+    "description": "A PHP application for logging driver hours and trips.",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Config\\": "config/",
+            "Mohte\\DriverLogbook\\": "app/",
+            "Middlewares\\": "app/Middlewares/",
+            "Utils\\": "app/Utils/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Mohamad Termanini",
+            "email": "mohtermanini.job@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}

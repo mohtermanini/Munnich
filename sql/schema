@@ -1,0 +1,37 @@
+-- Create the database
+CREATE DATABASE IF NOT EXISTS driver_hours_log;
+
+-- Use the database
+USE driver_hours_log;
+
+-- Create the drivers table
+CREATE TABLE drivers (
+id INT AUTO_INCREMENT PRIMARY KEY,
+username VARCHAR(255) NOT NULL UNIQUE,
+password VARCHAR(255) NOT NULL,
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Create the vehicles table
+CREATE TABLE vehicles (
+id INT AUTO_INCREMENT PRIMARY KEY,
+license_plate VARCHAR(20) NOT NULL UNIQUE,
+driver_id INT NOT NULL,
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+FOREIGN KEY (driver_id) REFERENCES drivers(id) ON DELETE CASCADE
+);
+
+-- Create the trips table without driver_id
+CREATE TABLE trips (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    vehicle_id INT NOT NULL,
+    start_km FLOAT NOT NULL,
+    end_km FLOAT DEFAULT NULL, -- Made nullable
+    purpose VARCHAR(255),
+    departure_time DATETIME NOT NULL,
+    departure_location VARCHAR(255),
+    arrival_time DATETIME DEFAULT NULL, -- Made nullable
+    arrival_location VARCHAR(255) DEFAULT NULL, -- Made nullable
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (vehicle_id) REFERENCES vehicles(id) ON DELETE CASCADE
+);
